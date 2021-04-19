@@ -1,0 +1,62 @@
+@charset "utf-8";
+// [TODO] 사용 변수 정리, 주석 정리 필요. 
+
+// :::::::::::::::::::::::::
+// @media mixin :: width
+// :::::::::::::::::::::::::
+
+$desktop-width: 1200px;
+$tablet-width: 920px;
+$mob-l-width: 720px;
+$mob-m-width: 425px;
+$mob-s-width: 375px;
+$mob-xs-width: 320px;
+
+// desktop :: ~1200
+@mixin pc-large {
+  @media all and (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+// tablet :: ~920
+@mixin tab-large {
+  @media all and (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+// tablet :: ~720
+@mixin mob-large {
+  @media all and (max-width: #{$mob-l-width}) {
+    @content;
+  }
+}
+// Mob mid :: ~425
+@mixin mob-mid {
+  @media all and (max-width: #{$mob-m-width}) {
+    @content;
+  }
+}
+// Mob small :: ~375
+@mixin mob-small {
+  @media all and (max-width: #{$mob-s-width}) {
+    @content;
+  }
+}
+// Mob xsmall :: ~320
+@mixin mob-xsmall {
+  @media all and (max-width: #{$mob-xs-width}) {
+    @content;
+  }
+}
+
+// :::::::::::::::::::::::::
+// @media mixin :: height
+// :::::::::::::::::::::::::
+$desktop-d-height: 450px;
+
+// PC height default :: 450
+@mixin pc-h-default {
+  @media all and (max-height: #{desktop-d-height}) {
+    @content;
+  }
+}

@@ -1,0 +1,34 @@
+@charset "utf-8";
+// [TODO] 사용 변수 정리, 주석 정리 필요.
+
+// font
+$nomalFont: 1.2rem;
+$designFont: 'Montserrat';
+// boxShadow
+$defaultShadow: 0 1.5rem 4.5rem 0 rgba(0,0,0,0.25);
+
+// spacing
+$defaultSpace: 2rem;
+$defaultFontSize: 1rem;
+
+// flex
+$valFlexBetweenCenter: flex, space-between, center;
+$valFlexCenter: flex, center, center;
+
+// color
+$white: #fff;
+$white5: transparentize($white, 0.5);
+$white50: rgba($white, 0.5);
+
+$txtTitColor: #222222;
+$txtSubColor: #333333;
+$white: #ffffff;
+$black: #000000;
+$grayEC: #ececec;
+$grayCE: #cecece;
+$grayF9: #f9f9f9;
+$grayE: #eeeeee;
+$grayC: #cccccc;
+$gray2: #222222;
+$gray3: #333333;
+$gray9: #999999;
