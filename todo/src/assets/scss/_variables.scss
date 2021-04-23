@@ -6,13 +6,16 @@ $nomalFont: 1.2rem;
 $designFont: 'Montserrat';
 // boxShadow
 $defaultShadow: 0 1.5rem 4.5rem 0 rgba(0,0,0,0.25);
+$defaultShadow2: 0 1.5rem 4.5rem 0 rgba(0,0,0,0.02);
 
 // spacing
 $defaultSpace: 2rem;
+$defaultSpace2: 1rem;
 $defaultFontSize: 1rem;
 
 // flex
 $valFlexBetweenCenter: flex, space-between, center;
+$valFlexBetweenStart: flex, space-between, start;
 $valFlexCenter: flex, center, center;
 
 // color

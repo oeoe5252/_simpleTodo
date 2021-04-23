@@ -4,9 +4,9 @@
         <todo-sort id="sort" msg="정렬선택"></todo-sort>
         <!-- clear btn 컴포넌트-->
         <clear-all-btn 
-            icon="fi-rr-delete"
+            :soundOnly=false
             btnStyle="allclear"
-            msg="전체삭제버튼"></clear-all-btn>
+            msg="Clear All"></clear-all-btn>
     </div>
 </template>
 <script>
@@ -21,3 +21,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    .todo-util {
+        @include displayFlex($valFlexBetweenCenter...);
+        padding: $defaultSpace 0;
+    }
+</style>

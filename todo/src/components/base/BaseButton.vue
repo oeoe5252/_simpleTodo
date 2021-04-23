@@ -1,10 +1,11 @@
 <template>
-    <button class="btn" :class="classStyle">
+    <button class="btn" :class="classStyle" @click="alertMsg">
         <i v-if="icon" :class="icon"></i>
-        <span class="sr-only"> {{ msg }} </span>
+        <span :class="{'sr-only': soundOnly}"> {{ msg }} </span>
     </button>
 </template>
 <script>
+
 export default {
     name: 'BaseButton',
     computed: {
@@ -21,10 +22,30 @@ export default {
             type: String,
             default: '임시 버튼'
         },
+        soundOnly: {
+            type: Boolean,
+            default: true
+        },
         icon: {
             type: String,
         }
-    }
+    },
+    methods: {
+        
+        alertMsg() {
+            window.alert(this.msg)
+            switch(this.btnStyle) {
+                case 'add':
+                    console.log("add")
+                    this.$emit('addItem')
+                    break
+                // case 'clear':
+                //     console.log("clear")
+                //     this.$emit('clearItem')
+                //     break
+            }
+        }
+    },
 }
 </script>
 <style lang="scss">
@@ -48,7 +69,12 @@ export default {
             margin: auto;
         }
         &.btn-allclear {
-            
+
+        }
+        &.btn-edit {
+            position: absolute;
+            bottom: $defaultSpace2;
+            right: 1.5rem;
         }
     }
 </style>

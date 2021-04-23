@@ -17,7 +17,6 @@
         <todo-footer></todo-footer>
       </div>
     </div>
-    <!-- 푸터영역 -->
     <!-- 모달영역 -->
   </div>
 </template>
@@ -28,6 +27,8 @@ import TodoHello from '@/components/todo/TodoHello.vue'
 import TodoTask from '@/components/todo/TodoTask.vue'
 import TodoInput from '@/components/form/TextInput.vue'
 import TodoUtil from '@/components/todo/TodoUtil.vue'
+import TodoList from '@/components/list/TodoList.vue'
+import TodoFooter from '@/components/layout/Footer.vue'
 
 export default {
   name: 'TodoApp',
@@ -36,8 +37,18 @@ export default {
     TodoHello,
     TodoTask,
     TodoInput,
-    TodoUtil
+    TodoUtil,
+    TodoList,
+    TodoFooter
+  },
+  data() {
+    return {
+      guideRequest : {
+        text: '',
+      }
+    }
   }
+
 }
 </script>
 
@@ -45,7 +56,9 @@ export default {
   .kv {
     min-height: 40rem;
   }
-
+  .content {
+    background-color: #fafafa;
+  }
   #todo-app {
     &.morning {
       .kv {

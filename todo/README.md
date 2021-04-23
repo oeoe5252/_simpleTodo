@@ -6,6 +6,9 @@
 > `;`: 사용 안함  
 > `tab-size`, `indent-size`: 4  
 
+2. [TODO]
+> 등록한 시간 받아서, coumputed 계산, 당일이면, 24시간제로 뜨고, 날이 지나면 MM/DD(day) 로 뜨게
+
 ## Project setup
 ```
 yarn install

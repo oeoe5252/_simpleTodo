@@ -1,7 +1,7 @@
 <template>
     <div class="input-select">
         <label :for="id" class="sr-only"> {{ msg }} </label>
-        <select :id="id" name="id">
+        <select :id="id" :name="id">
             <!-- [TODO] 넘겨받은 인자 반복 -->
             <option value="asce">오름차순</option>
             <option value="desc">내림차순</option>
