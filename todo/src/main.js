@@ -6,5 +6,10 @@ Vue.config.productionTip = false
 
 new Vue({
   store,
-  render: h => h(App)
+  render: h => h(App),
+  beforeCreate() {
+    console.log("before")
+    this.$store.commit('initialiseStore')
+    // this.$store.commit('changeItemState', { text: "Text" })
+  }
 }).$mount('#app')
