@@ -5,6 +5,8 @@
             <!-- [TODO] 넘겨받은 인자 반복 -->
             <option value="asce">오름차순</option>
             <option value="desc">내림차순</option>
+            <!-- [TODO] 완료한 시간도 추후 받기 -->
+            <option value="done">완료된순</option>
         </select>
     </div>
 </template>

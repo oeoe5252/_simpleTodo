@@ -1,11 +1,5 @@
 <template>
     <div class="input-text">
-        <!-- <input 
-            type="text"
-            :id="id"
-            :placeholder="placeholder"
-            @input="onInputUpdate"
-            @keyup.enter="addItem" /> -->
         <input 
             type="text"
             :id="id"
@@ -21,12 +15,18 @@
 </template>
 <script>
 import addBtn from '@/components/base/BaseButton.vue'
+import CurrentDate from '@/assets/js/dateTime.js'
 import { mapMutations } from 'vuex'
 
 export default {
     name: 'InputText',
     components: {
         addBtn,
+    },
+    computed: {
+        makeTimeId(time) {
+            return "id" + time
+        }
     },
     data() {
         return {
@@ -59,15 +59,11 @@ export default {
             
             if(this.todoTextData !== "") {
                 let itemObj = {
-                    idx: ++this.idx,
-                    chkName: "00",
-                    chkId: "00",
+                    chkId: "id-" + CurrentDate.getNowTime(),
                     chkText: this.todoTextData,
-                    date: "12:22",
+                    date: CurrentDate.getNowTime(),
                     state: "normal"
                 }
-                // this.localPlainSave()
-                // this.localObjSave(itemObj)
                 this.addItems(itemObj)
                 this.clearText()
             } else {

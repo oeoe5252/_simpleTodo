@@ -6,18 +6,25 @@
         <clear-all-btn 
             :soundOnly=false
             btnStyle="allclear"
-            msg="Clear All"></clear-all-btn>
+            msg="Clear All"
+            @clearAll="clearAll"></clear-all-btn>
     </div>
 </template>
 <script>
 import TodoSort from '@/components/form/BaseSelect.vue'
 import ClearAllBtn from '@/components/base/BaseButton.vue'
+import { mapMutations } from "vuex";
 
 export default {
     name: 'TodoUtil',
     components: {
         TodoSort,
         ClearAllBtn
+    },
+    methods: {
+        ...mapMutations({
+            clearAll: "clearAllItems"
+        })
     }
 }
 </script>

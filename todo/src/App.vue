@@ -41,23 +41,15 @@ export default {
     TodoList,
     TodoFooter
   },
-  data() {
-    return {
-      guideRequest : {
-        text: '',
-      }
-    }
-  }
-
 }
 </script>
 
 <style lang="scss">
+  body {
+    background-color: #fafafa;
+  }
   .kv {
     min-height: 40rem;
-  }
-  .content {
-    background-color: #fafafa;
   }
   #todo-app {
     &.morning {

@@ -19,7 +19,7 @@ export default {
             default: 'text'
         },
         msg: {
-            type: String,
+            type: [String, Number],
             default: '임시 버튼'
         },
         soundOnly: {
@@ -34,15 +34,20 @@ export default {
         
         alertMsg() {
             window.alert(this.msg)
+            // 여기서 emit 이벤트를 보내던지... 아님 부모에서 native 쓰던지, 아님 여기서 mutation 부르던지(그럼 선택된 인자를 전달 받긴 해야함... 뭐야 왜 복잡해.)
             switch(this.btnStyle) {
                 case 'add':
                     console.log("add")
                     this.$emit('addItem')
                     break
-                // case 'clear':
-                //     console.log("clear")
-                //     this.$emit('clearItem')
-                //     break
+                case 'clear':
+                    console.log("clear")
+                    this.$emit('clearItem')
+                    break
+                case 'allclear':
+                    console.log("allclear")
+                    this.$emit('clearAll')
+                    break
             }
         }
     },

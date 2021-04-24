@@ -2,7 +2,7 @@
     <div class="todo-task-wrap">
         <p>You've got</p>
         <p class="todo-count">
-            <em class="num-remain">0</em>
+            <em class="num-remain">{{ left }}</em>
             <span class="num-hr">&#47;</span>
             <span class="num-total"> {{ total }} </span>
         </p>
@@ -17,6 +17,7 @@ export default {
     computed: {
         ...mapGetters({
             total: "totalItems",
+            left: "doneItems"
         }),
     },
 };

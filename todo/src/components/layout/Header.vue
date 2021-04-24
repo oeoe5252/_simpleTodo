@@ -6,13 +6,25 @@
         </h1>
         <!-- 일자 영역 -->
         <div class="date">
-            MM/DD Sun
+            {{ thisTime }}
         </div>
     </header>
 </template>
 <script>
+import CurrentDate from '@/assets/js/dateTime.js'
+
 export default {
     name: 'TodoHeader',
+    data() {
+        return {
+            // thisTime: ""
+        }
+    },
+    computed: {
+        thisTime() {
+            return CurrentDate.getNowTime()
+        }
+    },
 }
 </script>
 <style lang="scss">

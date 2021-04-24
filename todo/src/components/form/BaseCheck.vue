@@ -4,14 +4,18 @@
         <input 
             :id="id"
             type="checkbox"
-            :name="name" />
+            :name="name"
+            :checked="item.state === 'done'"
+            @change="onChangeChecked" />
         <label 
             :for="id"
             class="label-legend"> 
-            <span>{{msg}}</span> </label>
+            <span>{{ item.state }} - {{msg}}</span> </label>
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
     name: 'BaseCheck',
     props: {
@@ -23,6 +27,23 @@ export default {
         },
         name: {
             type: String,
+        },
+        item: {
+            type: Object
+        },
+        idx: {
+            type: Number
+        }
+    },
+    methods: {
+        ...mapMutations(['changeItemState']),
+        onChangeChecked: function(e) {
+            if (e.target.checked) {
+                this.changeItemState({state: 'done', idx: this.idx})
+            } else {
+                this.changeItemState({state: 'normal', idx: this.idx})
+                // change state 반전
+            }
         }
     }
 }
