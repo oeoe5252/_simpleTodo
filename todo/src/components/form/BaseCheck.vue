@@ -1,5 +1,4 @@
 <template>
-    <!-- TodoCheck 리스트에서만 쓸 수 있는 스타일..ㅎㅎ 체크박스 -->
     <div class="input-check type1">
         <input 
             :id="id"
@@ -9,12 +8,13 @@
             @change="onChangeChecked" />
         <label 
             :for="id"
-            class="label-legend"> 
+            class="label-legend"
+            :class="[{done: item.state === 'done'}]"> 
             <span>{{ item.state }} - {{msg}}</span> </label>
     </div>
 </template>
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     name: 'BaseCheck',
@@ -36,14 +36,9 @@ export default {
         }
     },
     methods: {
-        ...mapMutations(['changeItemState']),
+        ...mapActions(["changeItemState"]),
         onChangeChecked: function(e) {
-            if (e.target.checked) {
-                this.changeItemState({state: 'done', idx: this.idx})
-            } else {
-                this.changeItemState({state: 'normal', idx: this.idx})
-                // change state 반전
-            }
+            this.changeItemState({isChecked: e.target.checked, idx: this.idx})
         }
     }
 }
@@ -57,13 +52,20 @@ export default {
             .label-legend {
                 font-size: 1.6rem;
                 line-height: 2.4rem;
-                // padding-left: 3rem;
                 margin-bottom: 0.5em;
+                span {
+                    transition: all .3s ease;
+                }
+                &.done {
+                    span {
+                        color: $grayC;
+                        text-decoration: line-through;
+                    }
+                }
                 &:before,
                 &:after {
                     @include pseudoBase();
                     top: 0;
-                    // bottom: 0;
                     left: 0;
                     margin: auto;
                 }
@@ -71,7 +73,6 @@ export default {
                     @include itemSize(24px, 24px);
                     background-color: $white;
                     border: 1px solid $grayC;
-                    // border-radius: 100%;
                     transition: all .15s;
                 }
                 &:after {

@@ -16,6 +16,7 @@
 <script>
 import addBtn from '@/components/base/BaseButton.vue'
 import CurrentDate from '@/assets/js/dateTime.js'
+import { ITEM_STATE } from '@/store/constants'
 import { mapMutations } from 'vuex'
 
 export default {
@@ -62,7 +63,7 @@ export default {
                     chkId: "id-" + CurrentDate.getNowTime(),
                     chkText: this.todoTextData,
                     date: CurrentDate.getNowTime(),
-                    state: "normal"
+                    state: ITEM_STATE.normal
                 }
                 this.addItems(itemObj)
                 this.clearText()

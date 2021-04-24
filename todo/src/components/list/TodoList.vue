@@ -27,8 +27,7 @@
 <script>
 import BaseCheck from "@/components/form/BaseCheck.vue";
 import BaseBtn from "@/components/base/BaseButton.vue";
-import { mapState } from "vuex";
-import { mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
     name: "TodoList",

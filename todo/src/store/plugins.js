@@ -1,4 +1,5 @@
-import { STORAGE_KEY } from './mutations'
+import { STORAGE_KEY } from '@/store/constants'
+
 
 // subscribe 의 트리거는 store가 업데이트 될 때 발생된다.
 // 얘가 플러그인 이었어, 이렇게 함수로 보내야했네 모듈화루
