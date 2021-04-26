@@ -4,25 +4,18 @@
             <span>52</span>
             <span class="swing">👍</span>
         </h1>
-        <!-- 일자 영역 -->
-        <div class="date">
-            {{ thisTime }}
-        </div>
+        <div class="date"> {{ thisTime }} </div>
     </header>
 </template>
 <script>
-import CurrentDate from '@/assets/js/dateTime.js'
+import NowDate from '@/assets/js/dateTime.js'
 
 export default {
     name: 'TodoHeader',
-    data() {
-        return {
-            // thisTime: ""
-        }
-    },
     computed: {
         thisTime() {
-            return CurrentDate.getNowTime()
+            let time = new NowDate()
+            return time.getMonth() + "/" +  time.getDay() + " [" + time.getDayOfWeek() + "]"
         }
     },
 }

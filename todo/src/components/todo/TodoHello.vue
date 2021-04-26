@@ -1,20 +1,36 @@
 <template>
     <div class="todo-hello-wrap">
         <p class="todo-hello">
-            <!-- [TODO] 시간에 따른 인사말 구분 -->
-            <span>Good morning,</span>
-            <!-- <span>Good afternoon,</span> -->
-            <!-- <span>Good evening,</span> -->
-            <span>{ user }</span>
+            <span> {{ dayMsg }} </span>
+            <span class="user-name">52</span>
         </p>
-
     </div>
 </template>
 <script>
+import { DAY_TIME } from '@/store/constants'
+import { mapState } from 'vuex'
+
 export default {
     name: 'TodoHello',
-    components: {
-    }
+    computed: {
+        ...mapState(["dayState"]),
+
+        dayMsg() {
+            let result = ""
+            switch(this.dayState) {
+                case DAY_TIME.morning:
+                    result = "Good morning, "
+                    break
+                case DAY_TIME.afternoon:
+                    result =  "Good afternoon, "
+                    break
+                case DAY_TIME.evening:
+                    result =  "Good evening, "
+                    break
+            }
+            return result
+        }
+    },
 }
 </script>
 <style lang="scss">
@@ -23,5 +39,9 @@ export default {
         font-weight: 500;
         color: $grayF9;
         margin-bottom: 2em;
+        
+        .user-name {
+            padding-left: 0.5rem;
+        }
     }
 </style>

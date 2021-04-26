@@ -8,7 +8,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     tmpListData: JSON.parse(localStorage.getItem(STORAGE_KEY)) || [],
-    sortState: ''
+    sortState: '',
+    dayState: '',
   },
   getters: {
     totalItems: state => {
@@ -16,7 +17,7 @@ const store = new Vuex.Store({
     },
     doneItems: state => {
         return state.tmpListData.filter(item => item.state == ITEM_STATE.done).length
-    }
+    },
   },
   mutations: {
     addItems: (state, payload) => {
@@ -60,6 +61,10 @@ const store = new Vuex.Store({
         return 0
       })
     },
+    detectDayTime: (state, payload) => {
+      console.log("mu day", payload)
+      state.dayState = payload
+    }
   },
   actions: {
     sortItems ({ commit }, payload) {

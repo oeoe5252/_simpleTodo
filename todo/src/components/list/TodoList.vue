@@ -18,7 +18,7 @@
                 <base-btn
                     btnStyle="edit"
                     :soundOnly="false"
-                    :msg="item.date"
+                    :msg="item.dateFormat"
                 ></base-btn>
             </div>
         </li>
@@ -34,6 +34,11 @@ export default {
     components: {
         BaseCheck,
         BaseBtn,
+    },
+    data() {
+        return {
+            testDateTime: ""
+        }
     },
     computed: {
         ...mapState({

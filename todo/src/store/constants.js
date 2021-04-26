@@ -9,3 +9,9 @@ export const SORT_STATE = Object.freeze({
   asce: 'asce',
   desc: 'desc',
 })
+
+export const DAY_TIME = Object.freeze({
+  morning: 'morning',
+  afternoon: 'afternoon',
+  evening: 'evening',
+})

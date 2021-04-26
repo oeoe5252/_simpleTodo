@@ -1,5 +1,5 @@
 <template>
-  <div id="todo-app" class="night">
+  <div id="todo-app" :class="$store.state.dayState">
     <!-- 키비주얼 -->
     <div class="kv">
       <div class="inner pb20">
@@ -20,11 +20,14 @@
     <!-- 모달영역 -->
     <!-- [TODO]
       - 리스트 모두 완료하면 축하 팝업 뽜봐밤 🎉🎉
+      - 날짜 누르면 수정 추가 (수정 날짜 필요)
      -->
   </div>
 </template>
 
 <script>
+import NowDate from '@/assets/js/dateTime.js'
+
 import TodoHeader from '@/components/layout/Header.vue'
 import TodoHello from '@/components/todo/TodoHello.vue'
 import TodoTask from '@/components/todo/TodoTask.vue'
@@ -44,6 +47,20 @@ export default {
     TodoList,
     TodoFooter
   },
+  computed: {
+    detectDayTime() {
+      let time = new NowDate()
+      return time.detectDayTime()
+    }
+  },
+  created() {
+    let time2 = new NowDate()
+    time2.detectDayTime()
+    console.log("jjjj", time2.detectDayTime())
+
+    this.$store.commit('detectDayTime', time2.detectDayTime() )
+
+  }
 }
 </script>
 
@@ -61,13 +78,13 @@ export default {
       }
     }
     
-    &.lunch {
+    &.afternoon {
       .kv {
         background-image: linear-gradient(179deg,#9cdfff 0%,#869bff 70%);
       }
     }
 
-    &.night {
+    &.evening {
       .kv {
         background-image: linear-gradient(1deg,#9e9cff 0%,#000933 70%);
       }
