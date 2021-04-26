@@ -1,11 +1,5 @@
 <template>
-    <draggable
-        v-model="StateItems"
-        @start="drag = true"
-        @end="drag = false"
-        class="todo-list"
-        tag="ul"
-    >
+    <ul class="todo-list">
         <li v-for="(item, index) of StateItems" :key="index" class="item">
             <base-check
                 :id="item.chkId"
@@ -28,12 +22,12 @@
                 ></base-btn>
             </div>
         </li>
-    </draggable>
+    </ul>
 </template>
 <script>
 import BaseCheck from "@/components/form/BaseCheck.vue";
 import BaseBtn from "@/components/base/BaseButton.vue";
-import draggable from "vuedraggable";
+// import draggable from "vuedraggable";
 import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -41,7 +35,7 @@ export default {
     components: {
         BaseCheck,
         BaseBtn,
-        draggable,
+        // draggable,
     },
     data() {
         return {
@@ -53,15 +47,15 @@ export default {
         ...mapState({
             StateItems: "tmpListData",
         }),
-        StateItems: {
-            get() {
-                return this.$store.state.tmpListData;
-            },
-            set(value) {
-                // value는 ItemArray 전체
-                this.$store.commit("updateItems", value);
-            },
-        },
+        // StateItems: {
+        //     get() {
+        //         return this.$store.state.tmpListData;
+        //     },
+        //     set(value) {
+        //         // value는 ItemArray 전체
+        //         this.$store.commit("updateItems", value);
+        //     },
+        // },
     },
     methods: {
         ...mapMutations({
@@ -82,16 +76,16 @@ export default {
         margin-bottom: 10px;
         padding: 1.5rem;
 
-        -webkit-transform-origin: 50% 0;
-        -webkit-transform-style: preserve-3d;
-        -webkit-animation-delay: 0.1s;
-        -webkit-transform: perspective(1000px) rotateX(-90deg);
+        // -webkit-transform-origin: 50% 0;
+        // -webkit-transform-style: preserve-3d;
+        // -webkit-animation-delay: 0.1s;
+        // -webkit-transform: perspective(1000px) rotateX(-90deg);
 
-        transform-origin: 50% 0;
-        transform-style: preserve-3d;
-        transform: perspective(1000px) rotateX(-45deg);
-        animation-delay: 0.1s;
-        animation: swing 0.6s forwards;
+        // transform-origin: 50% 0;
+        // transform-style: preserve-3d;
+        // transform: perspective(1000px) rotateX(-45deg);
+        // animation-delay: 0.1s;
+        // animation: swing 0.6s forwards;
 
         .util-wrap {
             margin-left: 10px;
