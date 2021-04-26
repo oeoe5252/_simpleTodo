@@ -82,6 +82,17 @@ export default {
         margin-bottom: 10px;
         padding: 1.5rem;
 
+        -webkit-transform-origin: 50% 0;
+        -webkit-transform-style: preserve-3d;
+        -webkit-animation-delay: 0.1s;
+        -webkit-transform: perspective(1000px) rotateX(-90deg);
+
+        transform-origin: 50% 0;
+        transform-style: preserve-3d;
+        transform: perspective(1000px) rotateX(-45deg);
+        animation-delay: 0.1s;
+        animation: swing 0.6s forwards;
+
         .util-wrap {
             margin-left: 10px;
         }
