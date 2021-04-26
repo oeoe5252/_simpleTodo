@@ -2,7 +2,7 @@ import { DAY_TIME } from '@/store/constants'
 export default class NowDate {
 
     constructor(value) {
-        if (typeof(value) == Number) {
+        if (typeof (value) == Number) {
             this.tmpDateTime = new Date(value).getTime()
         } else {
             this.tmpDateTime = new Date()
@@ -12,7 +12,7 @@ export default class NowDate {
     getYear() {
         return this.tmpDateTime.getYear()
     }
-    
+
     getMonth() {
         return this.tmpDateTime.getMonth() + 1
     }
@@ -23,7 +23,6 @@ export default class NowDate {
 
     getDayOfWeek() {
         const week = ['일', '월', '화', '수', '목', '금', '토']
-       
         return week[this.tmpDateTime.getDay()]
     }
 
@@ -63,12 +62,12 @@ export default class NowDate {
      */
     changeDateFormat(value = "type1") {
         let result = ""
-        switch(value) {
+        switch (value) {
             case 'type1':
                 result = this.getMonth() + "/" + this.getDay()
                 break
             case 'type2':
-                result = this.getHours() + ":" + this.getMinutes() +  ":" + this.getSeconds()
+                result = this.getHours() + ":" + this.getMinutes() + ":" + this.getSeconds()
                 break
             case 'type3':
                 result = this.getMonth() + "/" + this.getDay() + this.getHours() + ":" + this.getMinutes()
