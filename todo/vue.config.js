@@ -2,7 +2,7 @@
 // the "@" in vue-cli is an alias that points to __dirname/src
 module.exports = {
     outputDir: '../docs',
-    publicPath: '/_simpleTodo',
+    publicPath: '/_simpleTodo/todo',
     css: {
         loaderOptions: {
             scss: {
