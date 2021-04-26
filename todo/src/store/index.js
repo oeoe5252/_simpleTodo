@@ -13,31 +13,34 @@ const store = new Vuex.Store({
   },
   getters: {
     totalItems: state => {
-        return state.tmpListData.length
+      return state.tmpListData.length
     },
     doneItems: state => {
-        return state.tmpListData.filter(item => item.state == ITEM_STATE.done).length
+      return state.tmpListData.filter(item => item.state == ITEM_STATE.done).length
     },
   },
   mutations: {
     addItems: (state, payload) => {
-        if (state.sortState == SORT_STATE.asce) {
-          state.tmpListData.push(payload)
-        } else {
-          state.tmpListData.unshift(payload)
-        }
+      if (state.sortState == SORT_STATE.asce) {
+        state.tmpListData.push(payload)
+      } else {
+        state.tmpListData.unshift(payload)
+      }
     },
     clearItems: (state, payload) => {
-        state.tmpListData.splice(state.tmpListData.indexOf(payload.item), 1)
+      state.tmpListData.splice(state.tmpListData.indexOf(payload.item), 1)
     },
     clearAllItems: state => {
-        state.tmpListData = []
+      state.tmpListData = []
     },
     changeItemState: (state, payload) => {
-        state.tmpListData[payload.idx].state = payload.state
+      state.tmpListData[payload.idx].state = payload.state
     },
     changeSortState: (state, payload) => {
       state.sortState = payload
+    },
+    updateItems: (state, payload) => {
+      state.tmpListData = payload
     },
     sortAsceItems: (state) => {
       state.tmpListData.sort((a, b) => {
@@ -67,7 +70,7 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    sortItems ({ commit }, payload) {
+    sortItems({ commit }, payload) {
       commit('changeSortState', payload)
 
       if (payload === SORT_STATE.asce) {
@@ -76,11 +79,11 @@ const store = new Vuex.Store({
         commit('sortDescItems')
       }
     },
-    changeItemState ({ commit }, payload) {
-      if( payload.isChecked ) {
-        commit('changeItemState', {state: ITEM_STATE.done, idx: payload.idx})
-      }else {
-        commit('changeItemState', {state: ITEM_STATE.normal, idx: payload.idx})
+    changeItemState({ commit }, payload) {
+      if (payload.isChecked) {
+        commit('changeItemState', { state: ITEM_STATE.done, idx: payload.idx })
+      } else {
+        commit('changeItemState', { state: ITEM_STATE.normal, idx: payload.idx })
       }
     }
   },
