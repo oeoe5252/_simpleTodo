@@ -79,13 +79,31 @@ const store = new Vuex.Store({
         commit('sortDescItems')
       }
     },
+
     changeItemState({ commit }, payload) {
       if (payload.isChecked) {
         commit('changeItemState', { state: ITEM_STATE.done, idx: payload.idx })
       } else {
         commit('changeItemState', { state: ITEM_STATE.normal, idx: payload.idx })
       }
-    }
+    },
+    // A-2: BaseApi 모듈에서 사용 예시(로그인 및 캘린더 정보를 가져오는 api 정의하고 있음.)
+    // login(commit, loginPayload) {
+    //   return await axiosDefault().post('/login', loginPayload)
+    //     .then(data => {
+    //       JWT.setToken(data.token);
+    //       alert('로그인에 성공했습니다');
+    //     });
+    // },
+
+    // getCanlendar(commit, page) {
+    //   return await axiosAuth().get('/calendars', {
+    //     params: { page: page }
+    //   })
+    //     .then(data => {
+    //       commit('getCalendar', data);
+    //     });
+    // }
   },
   plugins
 })

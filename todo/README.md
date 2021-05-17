@@ -14,6 +14,57 @@
 > 모션 효과
 > 각 모듈 파일로 분리 시험
 
+--
+## Axios 통한 Backend API 호출
+
+[NOTE] : A-# 으로 넘버링 해놨음(A-1 ~ A-3)
+
+- url : http://api.stickinteractive.com  
+
+### API Table
+| 메소드 | 경로 | 비고 |
+|---|:---:|:---:|
+| `GET` | /api/v1/todos/{userId} | userId 의 식별값을 가지고 todo 리스트를 가져옵니다. | 
+| `POST` | /api/v1/todos/{userId} | * REQUEST 참조 : 투두리스트 생성 |
+| `PATCH` | /api/v1/todos/{Id} | userId가 아닌 id의 식별값으로 업데이트 합니다. |
+| `DELETE` | /api/v1/todos/{Id} | userId가 아닌 id의 식별값으로 삭제합니다.  |
+
+```
+// EX: GET/api/v1/todos/{userId}
+{
+	"success": "Boolean",
+	"data": [
+		{
+			"id": "Number",        // 할일 아이디
+			"text": "String",      // 할일 내용
+			"state": "Number",     // 1: 미완료 2: 완료
+			"created_at": "String" // 생성일
+			"updated_at": "String" // 수정일
+		}
+	]
+}
+
+```
+
+### REQUEST
+```
+POST todos
+{
+	"text": "String"
+}
+```
+
+### RESPONSE
+```
+{
+	"succese": "Boolean"
+	"message": "String"
+	"data": "Array"
+}
+```
+
+
+
 ---
 ## 참고
 > [MDN:Global_Objects/Array/sort](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)  

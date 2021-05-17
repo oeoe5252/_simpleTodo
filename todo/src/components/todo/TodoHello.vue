@@ -2,46 +2,65 @@
     <div class="todo-hello-wrap">
         <p class="todo-hello">
             <span> {{ dayMsg }} </span>
-            <span class="user-name">52</span>
+            <!-- A-3: 기기 번호 불러와 뿌려주기 -->
+            <span class="user-name" @click="onLogin">52</span>
         </p>
     </div>
 </template>
 <script>
-import { DAY_TIME } from '@/store/constants'
-import { mapState } from 'vuex'
+import { DAY_TIME } from "@/store/constants";
+import { mapState } from "vuex";
 
 export default {
-    name: 'TodoHello',
+    name: "TodoHello",
     computed: {
         ...mapState(["dayState"]),
 
         dayMsg() {
-            let result = ""
-            switch(this.dayState) {
+            let result = "";
+            switch (this.dayState) {
                 case DAY_TIME.morning:
-                    result = "Good morning, "
-                    break
+                    result = "Good morning, ";
+                    break;
                 case DAY_TIME.afternoon:
-                    result =  "Good afternoon, "
-                    break
+                    result = "Good afternoon, ";
+                    break;
                 case DAY_TIME.evening:
-                    result =  "Good evening, "
-                    break
+                    result = "Good evening, ";
+                    break;
             }
-            return result
-        }
+            return result;
+        },
     },
-}
+    // A-3: 기기 번호 불러와 뿌려주기
+    // methods: {
+    //     ...mapGetter("auth", [
+    //         "calendarList"
+    //     ]),
+    //     ...mapActions("auth", [
+    //         "login",
+    //         "getCanlendar"
+    //     ]),
+
+    //     onLogin() {
+    //         this.login({ email: this.email, password: this.password })
+    //     }
+
+    //     getCalendarList() {
+    //         this.getCalendar(3);
+    //     }
+    // }
+};
 </script>
 <style lang="scss">
-    .todo-hello-wrap {
-        font-size: 2.5rem;
-        font-weight: 500;
-        color: $grayF9;
-        margin-bottom: 2em;
-        
-        .user-name {
-            padding-left: 0.5rem;
-        }
+.todo-hello-wrap {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: $grayF9;
+    margin-bottom: 2em;
+
+    .user-name {
+        padding-left: 0.5rem;
     }
+}
 </style>
