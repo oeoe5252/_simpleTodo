@@ -13,6 +13,7 @@
 > 하루 지나면 HH:MM 에서 날이 지나면 MM/DD(day) 로 뜨게
 > 모션 효과
 > 각 모듈 파일로 분리 시험
+> readme정리 규칙 재정립
 
 3. [NOTE] Axios
 > interceptors 문법(use)
