@@ -14,6 +14,21 @@
 > 모션 효과
 > 각 모듈 파일로 분리 시험
 
+3. [NOTE] Axios
+> interceptors 문법
+> use 문법
+> Promise 문법
+```
+.get(`/api/v1/todos/`,{
+	params: {
+		userId: devicePayload
+	}
+})
+
+결과 
+url/?userId={~~~}
+```
+
 --
 ## Axios 통한 Backend API 호출
 

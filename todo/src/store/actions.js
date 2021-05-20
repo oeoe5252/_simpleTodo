@@ -2,20 +2,27 @@
 import { SORT_STATE, ITEM_STATE } from '@/store/constants'
 
 export const actions = {
+    deviceCheck({commit}, devicePayload) {
+      return axiosDefault().get('/api/v1/todos/', devicePayload)
+			.then(data => {
+				// JWT.setToken(data.token);
+				alert('기기 체크에 성공했습니다');
+			});
+    },
     sortItems ({ commit }, payload) {
-        commit('changeSortState', payload)
-  
-        if (payload === SORT_STATE.asce) {
-          commit('sortAsceItems')
-        } else if (payload === SORT_STATE.desc) {
-          commit('sortDescItems')
-        }
-      },
-      changeItemState ({ commit }, payload) {
-        if( payload.isChecked ) {
-          commit('changeItemState', {state: ITEM_STATE.done, idx: payload.idx})
-        }else {
-          commit('changeItemState', {state: ITEM_STATE.normal, idx: payload.idx})
-        }
+      commit('changeSortState', payload)
+
+      if (payload === SORT_STATE.asce) {
+        commit('sortAsceItems')
+      } else if (payload === SORT_STATE.desc) {
+        commit('sortDescItems')
       }
+    },
+    changeItemState ({ commit }, payload) {
+      if( payload.isChecked ) {
+        commit('changeItemState', {state: ITEM_STATE.done, idx: payload.idx})
+      }else {
+        commit('changeItemState', {state: ITEM_STATE.normal, idx: payload.idx})
+      }
+    }
 }

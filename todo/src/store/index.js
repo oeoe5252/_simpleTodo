@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import plugins from './plugins'
+import { axiosDefault, } from '@/store/api/BaseAxios'
 import { STORAGE_KEY, ITEM_STATE, SORT_STATE } from '@/store/constants'
 
 Vue.use(Vuex)
@@ -70,6 +71,28 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    tmpAddItem({ commit }, itemPayload) {
+      return axiosDefault().post(`/api/v1/todos/1`, itemPayload)
+			.then(data => {
+        console.log('---data:', data);
+        console.log('---payload:', itemPayload);
+        commit('addItems', itemPayload)
+				alert(`아이템 추가 성공`);
+			});
+    },
+
+    // commit 안써주면 payload에 제대로된 전달값이 안넘어옴
+    deviceCheck({ commit }, devicePayload) {
+      return axiosDefault().get(`/api/v1/todos/${devicePayload}`)
+			.then(data => {
+        console.log('---data:', data);
+        console.log('---payload:', devicePayload);
+        commit('changeSortState', SORT_STATE.asce)
+				alert(`기기 체크에 성공했습니다 /api/v1/todos/${devicePayload}`);
+        console.log('아이템 뿌려주기 필요')
+			});
+    },
+
     sortItems({ commit }, payload) {
       commit('changeSortState', payload)
 

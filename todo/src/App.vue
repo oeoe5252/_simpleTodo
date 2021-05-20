@@ -7,7 +7,7 @@
                 <todo-hello></todo-hello>
                 <todo-task></todo-task>
                 <todo-input
-                    id="todo-task"
+                    idx="todo-task"
                     placeholder="Enter your task"
                 ></todo-input>
             </div>

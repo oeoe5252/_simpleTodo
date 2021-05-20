@@ -2,7 +2,7 @@
     <div class="input-text">
         <input
             type="text"
-            :id="id"
+            :id="idx"
             :placeholder="placeholder"
             v-model="todoTextData"
             @keyup.enter="addItem"
@@ -17,9 +17,10 @@
 </template>
 <script>
 import addBtn from "@/components/base/BaseButton.vue";
-import NowDate from "@/assets/js/dateTime.js";
-import { ITEM_STATE } from "@/store/constants";
-import { mapMutations } from "vuex";
+// import NowDate from "@/assets/js/dateTime.js";
+// import { ITEM_STATE } from "@/store/constants";
+// import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "InputText",
@@ -33,17 +34,19 @@ export default {
     },
     data() {
         return {
-            idx: 0,
             todoTextData: "",
-            chkName: "",
             chkId: "",
             chkText: "",
             date: "",
             state: "",
+            id: "",
+            text: "",
+            // created_at: "",
+            // updated_at: "",
         };
     },
     props: {
-        id: {
+        idx: {
             type: String,
         },
         placeholder: {
@@ -54,19 +57,25 @@ export default {
         },
     },
     methods: {
-        ...mapMutations(["addItems"]),
+        // ...mapMutations(["addItems"]),
+        ...mapActions(["tmpAddItem"]),
 
         addItem: function () {
             if (this.todoTextData !== "") {
-                let time = new NowDate();
+                // let time = new NowDate();
                 let itemObj = {
-                    chkId: "id-" + time.getDateTime(),
-                    chkText: this.todoTextData,
-                    date: time.getDateTime(),
-                    dateFormat: time.changeDateFormat("type2"),
-                    state: ITEM_STATE.normal,
+                    // id는 자동할당
+                    // id: "id-" + time.getDateTime(),
+                    text: this.todoTextData,
+                    // date도 자동할당
+                    // date: time.getDateTime(),
+                    // dateFormat: time.changeDateFormat("type2"),
+                    // state: ITEM_STATE.normal,
+                    // stae 1: 미완료 2:완료
+                    // state: 1,
                 };
-                this.addItems(itemObj);
+                this.tmpAddItem(itemObj)
+                // this.addItems(itemObj);
                 this.clearText();
             } else {
                 window.alert(this.placeholder);

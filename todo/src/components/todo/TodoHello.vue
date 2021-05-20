@@ -9,7 +9,7 @@
 </template>
 <script>
 import { DAY_TIME } from "@/store/constants";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: "TodoHello",
@@ -33,23 +33,14 @@ export default {
         },
     },
     // A-3: 기기 번호 불러와 뿌려주기
-    // methods: {
-    //     ...mapGetter("auth", [
-    //         "calendarList"
-    //     ]),
-    //     ...mapActions("auth", [
-    //         "login",
-    //         "getCanlendar"
-    //     ]),
+    methods: {
+        ...mapActions(["deviceCheck"]),
 
-    //     onLogin() {
-    //         this.login({ email: this.email, password: this.password })
-    //     }
-
-    //     getCalendarList() {
-    //         this.getCalendar(3);
-    //     }
-    // }
+        onLogin() {
+            console.log("0000click")
+            this.deviceCheck("1")
+        }
+    }
 };
 </script>
 <style lang="scss">
