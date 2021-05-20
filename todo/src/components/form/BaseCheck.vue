@@ -1,15 +1,15 @@
 <template>
     <div class="input-check type1">
         <input 
-            :id="id"
+            :id="idid"
             type="checkbox"
             :name="name"
-            :checked="item.state === 'done'"
+            :checked="item.state === 2"
             @change="onChangeChecked" />
         <label 
-            :for="id"
+            :for="idid"
             class="label-legend"
-            :class="[{done: item.state === 'done'}]"> 
+            :class="[{done: item.state === 2}]"> 
             <span>{{ item.state }} - {{msg}}</span> </label>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         msg: {
             type: String,
         },
-        id: {
+        idid: {
             type: String,
         },
         name: {
@@ -38,8 +38,10 @@ export default {
     methods: {
         ...mapActions(["changeItemState"]),
         onChangeChecked: function(e) {
-            this.changeItemState({isChecked: e.target.checked, idx: this.idx})
-        }
+            // this.changeItemState({isChecked: e.target.checked, idx: this.idx})
+            this.changeItemState({isChecked: e.target.checked, text: this.item.text, id: this.item.id, idx: this.idx})
+        },
+
     }
 }
 </script>

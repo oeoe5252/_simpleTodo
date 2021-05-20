@@ -2,9 +2,9 @@
     <ul class="todo-list">
         <li v-for="(item, index) of StateItems" :key="index" class="item">
             <base-check
-                :id="item.chkId"
-                :name="item.chkId"
-                :msg="item.chkText"
+                :idid="addId(item.id)"
+                :name="addId(item.id)"
+                :msg="item.text"
                 :item="item"
                 :idx="index"
             ></base-check>
@@ -13,7 +13,7 @@
                     btnStyle="clear"
                     icon="fi-rr-cross"
                     msg="아이템 삭제"
-                    @clearItem="clearItem({ item })"
+                    @clearItem="clearItem( item.id, item.idx )"
                 ></base-btn>
                 <base-btn
                     btnStyle="edit"
@@ -28,7 +28,9 @@
 import BaseCheck from "@/components/form/BaseCheck.vue";
 import BaseBtn from "@/components/base/BaseButton.vue";
 // import draggable from "vuedraggable";
-import { mapState, mapMutations } from "vuex";
+import { mapState } from "vuex";
+// import { mapState, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
     name: "TodoList",
@@ -58,9 +60,23 @@ export default {
         // },
     },
     methods: {
-        ...mapMutations({
-            clearItem: "clearItems",
-        }),
+        // ...mapMutations({
+        //     clearItem: "clearItems",
+        // }),
+
+        // ...mapActions({
+        //     clearItem: "tmpDeleteItem"
+        // }),
+
+        ...mapActions(["tmpDeleteItem"]),
+        clearItem: function(tmpId, tmpIdx) {
+            this.tmpDeleteItem( {id: tmpId, idx: tmpIdx} )
+        },
+
+        addId: function(val) {
+            // console.log(`id-${val}`)
+            return 'id-' + val;
+        }
     },
 };
 </script>

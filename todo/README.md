@@ -15,9 +15,9 @@
 > 각 모듈 파일로 분리 시험
 
 3. [NOTE] Axios
-> interceptors 문법
-> use 문법
+> interceptors 문법(use)
 > Promise 문법
+> patch API 형식에 안맞으면 false 뜸. state만 바꾸려고 했는데 text까지 같이 받아야 오류 안뜸
 ```
 .get(`/api/v1/todos/`,{
 	params: {
@@ -27,6 +27,8 @@
 
 결과 
 url/?userId={~~~}
+
+
 ```
 
 --

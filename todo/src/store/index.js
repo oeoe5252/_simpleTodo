@@ -21,6 +21,17 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
+    setTmpListData: (state, payload) => {
+      state.tmpListData = payload
+    },
+    tmpChangeItemState: (state, payload) => {
+      state.tmpListData[payload.idx].state = payload.state
+    },
+    tmpClearItem: (state, payload) => {
+      console.log(payload);
+      state.tmpListData.splice(payload, 1)
+    },
+
     addItems: (state, payload) => {
       if (state.sortState == SORT_STATE.asce) {
         state.tmpListData.push(payload)
@@ -71,6 +82,15 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    tmpDeleteItem({ commit }, payload) {
+      return axiosDefault().delete(`/api/v1/todos/${payload.id}`)
+			.then(data => {
+        console.log('---data:', data);
+        console.log('---payload:', payload);
+        commit('tmpClearItem', payload.idx)
+			});
+    },
+
     tmpAddItem({ commit }, itemPayload) {
       return axiosDefault().post(`/api/v1/todos/1`, itemPayload)
 			.then(data => {
@@ -85,11 +105,12 @@ const store = new Vuex.Store({
     deviceCheck({ commit }, devicePayload) {
       return axiosDefault().get(`/api/v1/todos/${devicePayload}`)
 			.then(data => {
-        console.log('---data:', data);
-        console.log('---payload:', devicePayload);
-        commit('changeSortState', SORT_STATE.asce)
+        console.log('---data00:', data);
+        console.log('---data.data00:', data.data);
+        console.log('---payload00:', devicePayload);
+        commit('setTmpListData', data.data);
 				alert(`기기 체크에 성공했습니다 /api/v1/todos/${devicePayload}`);
-        console.log('아이템 뿌려주기 필요')
+        // console.log('아이템 뿌려주기 필요')
 			});
     },
 
@@ -105,10 +126,27 @@ const store = new Vuex.Store({
 
     changeItemState({ commit }, payload) {
       if (payload.isChecked) {
-        commit('changeItemState', { state: ITEM_STATE.done, idx: payload.idx })
+        console.log("--payload.idx", payload.idx)
+        return axiosDefault().patch(`/api/v1/todos/${payload.id}`, { text: `${payload.text}`, state : 2 })
+        .then(data => {
+          console.log('---ifdata:', data);
+          commit('tmpChangeItemState', { state: 2, idx: payload.idx })
+        });
       } else {
-        commit('changeItemState', { state: ITEM_STATE.normal, idx: payload.idx })
+        console.log("else--payload.idx", payload.idx)
+
+        return axiosDefault().patch(`/api/v1/todos/${payload.id}`, { text: `${payload.text}`, state : 1 })
+        .then(data => {
+          console.log('---elsedata:', data);
+          commit('tmpChangeItemState', { state: 1, idx: payload.idx })
+        });
       }
+      
+      // if (payload.isChecked) {
+      //   commit('changeItemState', { state: ITEM_STATE.done, idx: payload.idx })
+      // } else {
+      //   commit('changeItemState', { state: ITEM_STATE.normal, idx: payload.idx })
+      // }
     },
     // A-2: BaseApi 모듈에서 사용 예시(로그인 및 캘린더 정보를 가져오는 api 정의하고 있음.)
     // login(commit, loginPayload) {
